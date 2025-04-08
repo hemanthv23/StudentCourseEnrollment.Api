@@ -63,4 +63,4 @@ StudentCourseEnrollment.Api
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/StudentCourseEnrollment.Api.git
+   git clone https://github.com/hemanthv23/StudentCourseEnrollment.Api.git
