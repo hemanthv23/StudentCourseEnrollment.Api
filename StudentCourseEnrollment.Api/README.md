@@ -29,13 +29,13 @@ A robust backend API built using **ASP.NET Core 9** and **SQL Server** that mana
 
 ## 🏗️ Technologies Used
 
-| Tech             | Purpose                              |
+| Tech             | Purpose                               |
 |------------------|---------------------------------------|
 | .NET 9           | Backend Framework                     |
 | SQL Server       | Database                              |
 | Entity Framework | ORM for DB interaction                |
 | JWT              | Authentication / Authorization        |
-| Visual Studio 2022 | Development Environment              |
+| Visual Studio 2022 | Development Environment             |
 | Postman          | API Testing                           |
 
 ---

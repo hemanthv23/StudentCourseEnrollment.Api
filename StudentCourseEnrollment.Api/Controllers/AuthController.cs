@@ -58,17 +58,27 @@ namespace StudentCourseEnrollment.Api.Controllers
             await _userRepository.UpdateUserAsync(existingUser);
             await _userRepository.SaveChangesAsync();
 
+            // Set refresh token in cookie
+            Response.Cookies.Append("refreshToken", refreshToken, new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Strict,
+                Expires = DateTime.UtcNow.AddDays(7)
+            });
+
             return Ok(new
             {
-                Token = accessToken,
-                RefreshToken = refreshToken
+                Token = accessToken
             });
         }
 
         [HttpPost("refresh-token")]
         public async Task<IActionResult> RefreshToken([FromBody] TokenModel tokenModel)
         {
-            if (tokenModel is null || string.IsNullOrEmpty(tokenModel.AccessToken) || string.IsNullOrEmpty(tokenModel.RefreshToken))
+            var refreshToken = Request.Cookies["refreshToken"];
+
+            if (tokenModel is null || string.IsNullOrEmpty(tokenModel.AccessToken) || string.IsNullOrEmpty(refreshToken))
             {
                 return BadRequest("Invalid client request.");
             }
@@ -76,13 +86,12 @@ namespace StudentCourseEnrollment.Api.Controllers
             var principal = GetPrincipalFromExpiredToken(tokenModel.AccessToken);
             if (principal == null)
             {
-                return BadRequest("Invalid access token or refresh token.");
+                return BadRequest("Invalid access token.");
             }
 
             var email = principal.FindFirstValue(ClaimTypes.Email);
             var user = await _userRepository.GetUserByEmailAsync(email!);
-
-            if (user == null || user.RefreshToken != tokenModel.RefreshToken || user.RefreshTokenExpiryTime <= DateTime.UtcNow)
+            if (user == null || user.RefreshToken != refreshToken || user.RefreshTokenExpiryTime <= DateTime.UtcNow)
             {
                 return BadRequest("Invalid refresh token.");
             }
@@ -95,10 +104,18 @@ namespace StudentCourseEnrollment.Api.Controllers
             await _userRepository.UpdateUserAsync(user);
             await _userRepository.SaveChangesAsync();
 
+            // Replace refresh token in cookie
+            Response.Cookies.Append("refreshToken", newRefreshToken, new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Strict,
+                Expires = DateTime.UtcNow.AddDays(7)
+            });
+
             return Ok(new
             {
-                Token = newAccessToken,
-                RefreshToken = newRefreshToken
+                Token = newAccessToken
             });
         }
 
