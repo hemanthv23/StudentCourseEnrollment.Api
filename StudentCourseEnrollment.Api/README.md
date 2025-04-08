@@ -8,7 +8,7 @@ A robust backend API built using **ASP.NET Core 9** and **SQL Server** that mana
 
 ✅ Admin and Student role-based authentication  
 ✅ User Registration & Secure Login using JWT  
-✅ Refresh Token mechanism for session management  
+✅ Refresh Token mechanism for session management using **HttpOnly cookies**  
 ✅ Full Course CRUD Operations (Create, Read, Update, Delete)  
 ✅ Course Enrollment features for students  
 ✅ Clean code with Repository Pattern  
@@ -21,7 +21,7 @@ A robust backend API built using **ASP.NET Core 9** and **SQL Server** that mana
 
 - Role-based access (Admin 👨‍🏫 & Student 👨‍🎓)
 - JWT Token generation upon login
-- Refresh Token implementation
+- **Refresh Token** implementation using **secure HttpOnly cookies**
 - Password hashing using SHA256
 - Secure user management via `AuthController`
 
@@ -38,6 +38,7 @@ A robust backend API built using **ASP.NET Core 9** and **SQL Server** that mana
 | Visual Studio 2022 | Development Environment             |
 | Postman          | API Testing                           |
 
+---
 ---
 
 ## 📂 Folder Structure
