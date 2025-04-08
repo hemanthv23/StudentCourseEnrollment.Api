@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -103,3 +103,7 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
+
+// ✅ Practice commit by Hemanth K V on April 8, 2025
