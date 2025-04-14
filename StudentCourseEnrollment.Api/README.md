@@ -55,7 +55,7 @@ StudentCourseEnrollment.Api
 
 ---
 
-## INSTALL NECESSARY PACKAGES NEEDED
+## 📦 INSTALL NECESSARY PACKAGES NEEDED
 
 The following NuGet packages are required for the project:
 
