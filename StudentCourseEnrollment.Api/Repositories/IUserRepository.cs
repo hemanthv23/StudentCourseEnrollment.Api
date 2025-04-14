@@ -11,7 +11,7 @@ namespace StudentCourseEnrollment.Api.Repositories
         Task<User> GetUserByEmailAsync(string email);
         Task AddUserAsync(User user);
         Task DeleteUserAsync(User user);
-        Task UpdateUserAsync(User user); 
+        Task UpdateUserAsync(User user);
         Task SaveChangesAsync();
     }
 }

@@ -5,26 +5,16 @@ using Microsoft.OpenApi.Models;
 using StudentCourseEnrollment.Api.Data;
 using StudentCourseEnrollment.Api.Repositories;
 using System.Text;
+using AutoMapper;
+using StudentCourseEnrollment.Api.Models;
+using StudentCourseEnrollment.Api.Models.DTOs;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
 
-//// Add CORS policy
-//builder.Services.AddCors(options =>
-//{
-//    options.AddPolicy("AllowCors",
-//        policy =>
-//        {
-//            policy.WithOrigins("http://localhost:4200") // Update with your Angular frontend URL
-//                  .AllowAnyMethod()
-//                  .AllowAnyHeader()
-//                  .AllowCredentials();
-//        });
-//});
-
-// Add Swagger services with JWT Authentication
+// ✅ Add Swagger with JWT Authentication
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -54,19 +44,32 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-// Register ApplicationDbContext with SQL Server
+// ✅ Register DbContext with SQL Server
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("StudentCourseDb")));
 
-// Register Repositories
+// ✅ Register Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICourseRepository, CourseRepository>();
 builder.Services.AddScoped<IEnrollmentRepository, EnrollmentRepository>();
 
-// Configure JWT Authentication
+// ✅ Register AutoMapper with ALL required mappings
+builder.Services.AddAutoMapper(cfg => {
+    // User mappings
+    cfg.CreateMap<User, UserDto>();
+
+    // Course mappings (assuming you have a CourseDto)
+    cfg.CreateMap<Course, CourseDto>();
+
+    // Enrollment mappings
+    cfg.CreateMap<Enrollment, EnrollmentDto>()
+        .ForMember(dest => dest.User, opt => opt.MapFrom(src => src.User))
+        .ForMember(dest => dest.Course, opt => opt.MapFrom(src => src.Course));
+});
+
+// ✅ Configure JWT Authentication
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 var key = Encoding.UTF8.GetBytes(jwtSettings["Key"]);
-
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -84,7 +87,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// ✅ Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -93,17 +96,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Enable CORS
-app.UseCors("AllowCors");
-
-// Enable Authentication & Authorization
+// ✅ Enable Authentication & Authorization
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
 
 app.Run();
-
-
-
-// ✅ Practice commit by Hemanth K V on April 8, 2025
+// ✅ Updated by Hemanth K V on April 14, 2025 (CORS removed)

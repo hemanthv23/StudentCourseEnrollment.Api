@@ -33,7 +33,6 @@ namespace StudentCourseEnrollment.Api.Repositories
         public async Task AddUserAsync(User user)
         {
             var existingAdmin = await _context.Users.FirstOrDefaultAsync(u => u.Role == "Admin");
-
             if (existingAdmin == null)
             {
                 user.Role = "Admin"; // First user gets Admin role
@@ -42,7 +41,6 @@ namespace StudentCourseEnrollment.Api.Repositories
             {
                 user.Role = "User"; // Others get User role
             }
-
             await _context.Users.AddAsync(user);
         }
 

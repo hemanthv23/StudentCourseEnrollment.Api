@@ -29,35 +29,46 @@ A robust backend API built using **ASP.NET Core 9** and **SQL Server** that mana
 
 ## 🏗️ Technologies Used
 
-| Tech             | Purpose                               |
-|------------------|---------------------------------------|
-| .NET 9           | Backend Framework                     |
-| SQL Server       | Database                              |
-| Entity Framework | ORM for DB interaction                |
-| JWT              | Authentication / Authorization        |
-| Visual Studio 2022 | Development Environment             |
-| Postman          | API Testing                           |
+| Tech                | Purpose                               |
+|---------------------|---------------------------------------|
+| .NET 9              | Backend Framework                     |
+| SQL Server          | Database                              |
+| Entity Framework    | ORM for DB interaction                |
+| JWT                 | Authentication / Authorization        |
+| Visual Studio 2022  | Development Environment               |
+| Postman             | API Testing                           |
 
----
 ---
 
 ## 📂 Folder Structure
 
-StudentCourseEnrollment.Api
-│
-├── Controllers/             # All API controllers (User, Course, Enrollment)
-├── Models/                  # Domain models (User, Course, Enrollment)
-├── Repositories/            # Interfaces and logic for data access
-├── Data/                    # ApplicationDbContext (EF Core setup)
-│
-├── Program.cs               # Main app configuration
-├── appsettings.json         # DB connection string & JWT settings
-├── StudentCourseEnrollment.Api.csproj
+StudentCourseEnrollment.Api  
+│  
+├── Controllers/             # All API controllers (User, Course, Enrollment)  
+├── Models/                  # Domain models (User, Course, Enrollment)  
+├── Repositories/            # Interfaces and logic for data access  
+├── Data/                    # ApplicationDbContext (EF Core setup)  
+├── DTOs/                    # Data Transfer Objects (UserDto, CourseDto, EnrollmentDto)  
+│  
+├── Program.cs               # Main app configuration  
+├── appsettings.json         # DB connection string & JWT settings  
+├── StudentCourseEnrollment.Api.csproj  
 └── README.md
 
-
-
 ---
+
+## INSTALL NECESSARY PACKAGES NEEDED
+
+The following NuGet packages are required for the project:
+
+1. Microsoft.AspNetCore.Authentication.JwtBearer
+2. Microsoft.EntityFrameworkCore
+3. Microsoft.EntityFrameworkCore.SqlServer
+4. Microsoft.OpenApi.Models
+5. Microsoft.IdentityModel.Tokens
+6. AutoMapper
+7. Microsoft.EntityFrameworkCore.Tools
+
 
 ## 🚀 How to Get Started
 

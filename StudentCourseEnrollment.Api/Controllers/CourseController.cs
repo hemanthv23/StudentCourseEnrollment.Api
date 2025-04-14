@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StudentCourseEnrollment.Api.Models;
 using StudentCourseEnrollment.Api.Repositories;
 
@@ -33,7 +34,9 @@ namespace StudentCourseEnrollment.Api.Controllers
             return Ok(course);
         }
 
+        // Only Admins can add a course
         [HttpPost("add-course")]
+        [Authorize(Roles = "Admin")]  // Restrict to Admin role
         public async Task<IActionResult> AddCourse([FromBody] Course course)
         {
             await _courseRepository.AddCourseAsync(course);
@@ -41,7 +44,9 @@ namespace StudentCourseEnrollment.Api.Controllers
             return Ok("Course added successfully.");
         }
 
+        // Only Admins can update a course
         [HttpPut("update-course/{id}")]
+        [Authorize(Roles = "Admin")]  // Restrict to Admin role
         public async Task<IActionResult> UpdateCourse(int id, [FromBody] Course updatedCourse)
         {
             var course = await _courseRepository.GetCourseByIdAsync(id);
@@ -49,16 +54,16 @@ namespace StudentCourseEnrollment.Api.Controllers
             {
                 return NotFound("Course not found.");
             }
-
             course.Title = updatedCourse.Title;
             course.Description = updatedCourse.Description;
-            course.CoverImagePath = updatedCourse.CoverImagePath; // Fixed Property Name
-
+            course.CoverImagePath = updatedCourse.CoverImagePath;
             await _courseRepository.SaveChangesAsync();
             return Ok("Course updated successfully.");
         }
 
+        // Only Admins can delete a course
         [HttpDelete("delete-course/{id}")]
+        [Authorize(Roles = "Admin")]  // Restrict to Admin role
         public async Task<IActionResult> DeleteCourse(int id)
         {
             var course = await _courseRepository.GetCourseByIdAsync(id);
@@ -66,10 +71,8 @@ namespace StudentCourseEnrollment.Api.Controllers
             {
                 return NotFound("Course not found.");
             }
-
             await _courseRepository.DeleteCourseAsync(course);
             await _courseRepository.SaveChangesAsync();
-
             return Ok("Course deleted successfully.");
         }
     }
