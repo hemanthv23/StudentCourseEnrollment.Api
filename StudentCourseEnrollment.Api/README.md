@@ -48,8 +48,7 @@ StudentCourseEnrollment.Api
 ├── Models/                  # Domain models (User, Course, Enrollment)  
 ├── Repositories/            # Interfaces and logic for data access  
 ├── Data/                    # ApplicationDbContext (EF Core setup)  
-├── DTOs/                    # Data Transfer Objects (UserDto, CourseDto, EnrollmentDto)  
-│  
+├── DTOs/                    # Data Transfer Objects (UserDto, CourseDto, EnrollmentDto)   
 ├── Program.cs               # Main app configuration  
 ├── appsettings.json         # DB connection string & JWT settings  
 ├── StudentCourseEnrollment.Api.csproj  
