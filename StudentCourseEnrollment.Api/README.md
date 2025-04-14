@@ -59,13 +59,13 @@ StudentCourseEnrollment.Api
 
 The following NuGet packages are required for the project:
 
-1.dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
-2.dotnet add package Microsoft.EntityFrameworkCore
-3.dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-4.dotnet add package Microsoft.EntityFrameworkCore.Tools
-5.dotnet add package Microsoft.IdentityModel.Tokens
-6.dotnet add package Microsoft.OpenApi.Models
-7.dotnet add package AutoMapper
+1.  Microsoft.AspNetCore.Authentication.JwtBearer
+2.  Microsoft.EntityFrameworkCore
+3.  Microsoft.EntityFrameworkCore.SqlServer
+4.  Microsoft.EntityFrameworkCore.Tools
+5.  Microsoft.IdentityModel.Tokens
+6.  Microsoft.OpenApi.Models
+7.  AutoMapper
 
 
 ## 🚀 How to Get Started
