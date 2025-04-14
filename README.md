@@ -1,3 +1,3 @@
 # StudentCourseEnrollment.Api
 
-file is Inside the root folder
+README.md file is inside the Root or main or parent folder
