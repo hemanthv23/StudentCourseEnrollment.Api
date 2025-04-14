@@ -43,7 +43,6 @@ A robust backend API built using **ASP.NET Core 9** and **SQL Server** that mana
 ## 📂 Folder Structure
 
 StudentCourseEnrollment.Api  
-│  
 ├── Controllers/             # All API controllers (User, Course, Enrollment)  
 ├── Models/                  # Domain models (User, Course, Enrollment)  
 ├── Repositories/            # Interfaces and logic for data access  
