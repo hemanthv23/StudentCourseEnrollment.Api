@@ -57,10 +57,8 @@ builder.Services.AddScoped<IEnrollmentRepository, EnrollmentRepository>();
 builder.Services.AddAutoMapper(cfg => {
     // User mappings
     cfg.CreateMap<User, UserDto>();
-
-    // Course mappings (assuming you have a CourseDto)
+    // Course mappings
     cfg.CreateMap<Course, CourseDto>();
-
     // Enrollment mappings
     cfg.CreateMap<Enrollment, EnrollmentDto>()
         .ForMember(dest => dest.User, opt => opt.MapFrom(src => src.User))
@@ -91,8 +89,17 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        // Custom Swagger UI configuration
+        options.InjectStylesheet("/swagger/custom.css"); // Custom CSS to style the lock icon
+        options.OAuthClientId("swagger-client-id");
+        options.OAuthAppName("Swagger UI");
+    });
 }
+
+// Add redirect from root URL to Swagger UI
+app.MapGet("/", () => Results.Redirect("/swagger"));
 
 app.UseHttpsRedirection();
 
@@ -103,4 +110,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-// ✅ Updated by Hemanth K V on April 14, 2025 (CORS removed)
+
