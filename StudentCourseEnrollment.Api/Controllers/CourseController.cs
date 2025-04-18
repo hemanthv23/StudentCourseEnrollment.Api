@@ -36,7 +36,7 @@ namespace StudentCourseEnrollment.Api.Controllers
 
         // Only Admins can add a course
         [HttpPost("add-course")]
-        [Authorize(Roles = "Admin")]  // Restrict to Admin role
+        [Authorize(Roles = "Admin")]  
         public async Task<IActionResult> AddCourse([FromBody] Course course)
         {
             await _courseRepository.AddCourseAsync(course);
@@ -46,7 +46,7 @@ namespace StudentCourseEnrollment.Api.Controllers
 
         // Only Admins can update a course
         [HttpPut("update-course/{id}")]
-        [Authorize(Roles = "Admin")]  // Restrict to Admin role
+        [Authorize(Roles = "Admin")]  
         public async Task<IActionResult> UpdateCourse(int id, [FromBody] Course updatedCourse)
         {
             var course = await _courseRepository.GetCourseByIdAsync(id);
@@ -63,7 +63,7 @@ namespace StudentCourseEnrollment.Api.Controllers
 
         // Only Admins can delete a course
         [HttpDelete("delete-course/{id}")]
-        [Authorize(Roles = "Admin")]  // Restrict to Admin role
+        [Authorize(Roles = "Admin")] 
         public async Task<IActionResult> DeleteCourse(int id)
         {
             var course = await _courseRepository.GetCourseByIdAsync(id);

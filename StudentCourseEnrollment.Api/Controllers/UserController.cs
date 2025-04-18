@@ -11,7 +11,7 @@ namespace StudentCourseEnrollment.Api.Controllers
 {
     [Route("api/user-management")]
     [ApiController]
-    [Authorize] // 🔒 Protects all endpoints with JWT authentication
+    [Authorize] 
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _userRepository;

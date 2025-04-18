@@ -85,18 +85,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 var app = builder.Build();
 
-// ✅ Configure the HTTP request pipeline
-if (app.Environment.IsDevelopment())
+// ✅ Always enable Swagger (including in production)
+app.UseSwagger();
+app.UseSwaggerUI(options =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(options =>
-    {
-        // Custom Swagger UI configuration
-        options.InjectStylesheet("/swagger/custom.css"); // Custom CSS to style the lock icon
-        options.OAuthClientId("swagger-client-id");
-        options.OAuthAppName("Swagger UI");
-    });
-}
+    options.OAuthClientId("swagger-client-id");
+    options.OAuthAppName("Swagger UI");
+});
 
 // Add redirect from root URL to Swagger UI
 app.MapGet("/", () => Results.Redirect("/swagger"));
@@ -110,4 +105,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
