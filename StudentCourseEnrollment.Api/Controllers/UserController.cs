@@ -24,7 +24,7 @@ namespace StudentCourseEnrollment.Api.Controllers
         }
 
         [HttpGet("all-users")]
-        [Authorize(Roles = "Admin")] // Only Admins can access
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllUsers()
         {
             var users = await _userRepository.GetAllUsersAsync();
@@ -33,7 +33,7 @@ namespace StudentCourseEnrollment.Api.Controllers
         }
 
         [HttpGet("get-user/{id}")]
-        [Authorize] // Only authenticated users can access
+        [Authorize]
         public async Task<IActionResult> GetUserById(int id)
         {
             var user = await _userRepository.GetUserByIdAsync(id);
@@ -46,7 +46,7 @@ namespace StudentCourseEnrollment.Api.Controllers
         }
 
         [HttpDelete("delete-user/{id}")]
-        [Authorize(Roles = "Admin")] // Only Admins can delete users
+        [Authorize(Roles = "Admin")] 
         public async Task<IActionResult> DeleteUser(int id)
         {
             var user = await _userRepository.GetUserByIdAsync(id);

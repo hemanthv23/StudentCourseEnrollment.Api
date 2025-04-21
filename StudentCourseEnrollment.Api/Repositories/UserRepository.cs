@@ -51,7 +51,7 @@ namespace StudentCourseEnrollment.Api.Repositories
 
         public async Task UpdateUserAsync(User user)
         {
-            _context.Users.Update(user); // ✅ Needed for Refresh Token updates
+            _context.Users.Update(user);
         }
 
         public async Task SaveChangesAsync()

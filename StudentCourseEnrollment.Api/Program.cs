@@ -14,7 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 
-// ✅ Add Swagger with JWT Authentication
+// Add Swagger with JWT Authentication
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -44,16 +44,16 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-// ✅ Register DbContext with SQL Server
+// Register DbContext with SQL Server
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("StudentCourseDb")));
 
-// ✅ Register Repositories
+// Register Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICourseRepository, CourseRepository>();
 builder.Services.AddScoped<IEnrollmentRepository, EnrollmentRepository>();
 
-// ✅ Register AutoMapper with ALL required mappings
+// Register AutoMapper with ALL required mappings
 builder.Services.AddAutoMapper(cfg => {
     // User mappings
     cfg.CreateMap<User, UserDto>();
@@ -65,7 +65,7 @@ builder.Services.AddAutoMapper(cfg => {
         .ForMember(dest => dest.Course, opt => opt.MapFrom(src => src.Course));
 });
 
-// ✅ Configure JWT Authentication
+// Configure JWT Authentication
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 var key = Encoding.UTF8.GetBytes(jwtSettings["Key"]);
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -85,7 +85,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 var app = builder.Build();
 
-// ✅ Always enable Swagger (including in production)
+// Always enable Swagger (including in production)
 app.UseSwagger();
 app.UseSwaggerUI(options =>
 {
@@ -98,7 +98,7 @@ app.MapGet("/", () => Results.Redirect("/swagger"));
 
 app.UseHttpsRedirection();
 
-// ✅ Enable Authentication & Authorization
+// Enable Authentication & Authorization
 app.UseAuthentication();
 app.UseAuthorization();
 

@@ -4,7 +4,7 @@
     {
         public int EnrollmentId { get; set; }
         public int UserId { get; set; }
-        public UserDto? User { get; set; } // Uses UserDto instead of User to avoid exposing tokens
+        public UserDto? User { get; set; }
         public int CourseId { get; set; }
         public Course? Course { get; set; }
         public DateTime EnrolledAt { get; set; }
