@@ -1,4 +1,6 @@
-﻿namespace StudentCourseEnrollment.Api.Models
+﻿using static System.Net.Mime.MediaTypeNames;
+
+namespace StudentCourseEnrollment.Api.Models
 {
     public class User
     {
@@ -10,3 +12,4 @@
         public DateTime? RefreshTokenExpiryTime { get; set; }
     }
 }
+

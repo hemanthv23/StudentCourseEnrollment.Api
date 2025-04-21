@@ -67,6 +67,13 @@ The following NuGet packages are required for the project:
 6.  Microsoft.OpenApi.Models
 7.  AutoMapper
 
+	
+## 1️⃣ How to start ID from 1 (sequentail)
+
+1. **Use urDBName;**
+   **DELETE FROM YourTableName;**
+   **DBCC CHECKIDENT ('YourTableName', RESEED, 0); -- Next ID will be 1**
+
 
 ## 🚀 How to Get Started
 
